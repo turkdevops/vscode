@@ -283,6 +283,10 @@ export class StatefulMarkdownCell extends Disposable {
 
 		this.markdownContainer.innerText = '';
 		this.viewCell.clearHTML();
+
+		this.notebookEditor.createMarkdownPreview(this.viewCell);
+		return;
+
 		const markdownRenderer = this.viewCell.getMarkdownRenderer();
 		const renderedHTML = this.viewCell.getHTML();
 		if (renderedHTML) {
