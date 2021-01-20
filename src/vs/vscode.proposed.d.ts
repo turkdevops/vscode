@@ -2492,9 +2492,8 @@ declare module 'vscode' {
 
 	interface OpenExternalOptions {
 		/**
-		 *
 		 * If `true`, then VS Code will check if any contributed openers can handle the
-		 * uri, and fallback to the default opener behavior.
+		 * uri, falling back to the default opener behavior if no openers are available.
 		 *
 		 * If it is string, then this specifies the id of the `ExternalUriOpener`
 		 * that should be used if it is available. Use `'default'` to force VS Code's
