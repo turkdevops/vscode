@@ -131,6 +131,7 @@ declare module 'vscode' {
 
 	//#endregion
 
+	// eslint-disable-next-line vscode-dts-region-comments
 	//#region @alexdima - resolvers
 
 	export interface MessageOptions {
@@ -728,6 +729,7 @@ declare module 'vscode' {
 
 	//#endregion
 
+	// eslint-disable-next-line vscode-dts-region-comments
 	//#region debug
 
 	/**
@@ -748,6 +750,7 @@ declare module 'vscode' {
 
 	//#endregion
 
+	// eslint-disable-next-line vscode-dts-region-comments
 	//#region @joaomoreno: SCM validation
 
 	/**
@@ -798,6 +801,7 @@ declare module 'vscode' {
 
 	//#endregion
 
+	// eslint-disable-next-line vscode-dts-region-comments
 	//#region @joaomoreno: SCM selected provider
 
 	export interface SourceControl {
@@ -873,21 +877,13 @@ declare module 'vscode' {
 
 	//#endregion
 
+	// eslint-disable-next-line vscode-dts-region-comments
 	//#region @jrieken -> exclusive document filters
 
 	export interface DocumentFilter {
 		readonly exclusive?: boolean;
 	}
 
-	//#endregion
-
-	//#region https://github.com/microsoft/vscode/issues/58440
-	export interface OnEnterRule {
-		/**
-		 * This rule will only execute if the text above the this line matches this regular expression.
-		 */
-		oneLineAboveText?: RegExp;
-	}
 	//#endregion
 
 	//#region Tree View: https://github.com/microsoft/vscode/issues/61313 @alexr00
@@ -993,7 +989,7 @@ declare module 'vscode' {
 
 	//#endregion
 
-	//#region @rebornix: Notebook
+	//#region notebook https://github.com/microsoft/vscode/issues/106744
 
 	export enum CellKind {
 		Markdown = 1,
@@ -1577,16 +1573,16 @@ declare module 'vscode' {
 		 * resolve the raw content for `uri` as the resouce is not necessarily a file on disk.
 		 */
 		// eslint-disable-next-line vscode-dts-provider-naming
-		openNotebook(uri: Uri, openContext: NotebookDocumentOpenContext): NotebookData | Promise<NotebookData>;
+		openNotebook(uri: Uri, openContext: NotebookDocumentOpenContext): NotebookData | Thenable<NotebookData>;
 		// eslint-disable-next-line vscode-dts-provider-naming
 		// eslint-disable-next-line vscode-dts-cancellation
-		resolveNotebook(document: NotebookDocument, webview: NotebookCommunication): Promise<void>;
+		resolveNotebook(document: NotebookDocument, webview: NotebookCommunication): Thenable<void>;
 		// eslint-disable-next-line vscode-dts-provider-naming
-		saveNotebook(document: NotebookDocument, cancellation: CancellationToken): Promise<void>;
+		saveNotebook(document: NotebookDocument, cancellation: CancellationToken): Thenable<void>;
 		// eslint-disable-next-line vscode-dts-provider-naming
-		saveNotebookAs(targetResource: Uri, document: NotebookDocument, cancellation: CancellationToken): Promise<void>;
+		saveNotebookAs(targetResource: Uri, document: NotebookDocument, cancellation: CancellationToken): Thenable<void>;
 		// eslint-disable-next-line vscode-dts-provider-naming
-		backupNotebook(document: NotebookDocument, context: NotebookDocumentBackupContext, cancellation: CancellationToken): Promise<NotebookDocumentBackup>;
+		backupNotebook(document: NotebookDocument, context: NotebookDocumentBackupContext, cancellation: CancellationToken): Thenable<NotebookDocumentBackup>;
 	}
 
 	export interface NotebookKernel {
@@ -1685,7 +1681,7 @@ declare module 'vscode' {
 		): Disposable;
 
 		export function createNotebookEditorDecorationType(options: NotebookDecorationRenderOptions): NotebookEditorDecorationType;
-		export function openNotebookDocument(uri: Uri, viewType?: string): Promise<NotebookDocument>;
+		export function openNotebookDocument(uri: Uri, viewType?: string): Thenable<NotebookDocument>;
 		export const onDidOpenNotebookDocument: Event<NotebookDocument>;
 		export const onDidCloseNotebookDocument: Event<NotebookDocument>;
 		export const onDidSaveNotebookDocument: Event<NotebookDocument>;
@@ -1729,7 +1725,7 @@ declare module 'vscode' {
 		export const onDidChangeActiveNotebookEditor: Event<NotebookEditor | undefined>;
 		export const onDidChangeNotebookEditorSelection: Event<NotebookEditorSelectionChangeEvent>;
 		export const onDidChangeNotebookEditorVisibleRanges: Event<NotebookEditorVisibleRangesChangeEvent>;
-		export function showNotebookDocument(document: NotebookDocument, options?: NotebookDocumentShowOptions): Promise<NotebookEditor>;
+		export function showNotebookDocument(document: NotebookDocument, options?: NotebookDocumentShowOptions): Thenable<NotebookEditor>;
 	}
 
 	//#endregion
@@ -1940,7 +1936,7 @@ declare module 'vscode' {
 	}
 
 	export namespace languages {
-		export function getTokenInformationAtPosition(document: TextDocument, position: Position): Promise<TokenInformation>;
+		export function getTokenInformationAtPosition(document: TextDocument, position: Position): Thenable<TokenInformation>;
 	}
 
 	//#endregion
@@ -2506,54 +2502,21 @@ declare module 'vscode' {
 		export function openExternal(target: Uri, options?: OpenExternalOptions): Thenable<boolean>;
 	}
 
-	//#endregion
+	//#endregionn
 
-	//#region https://github.com/microsoft/vscode/issues/112249
+	//#region https://github.com/Microsoft/vscode/issues/15178
 
-	/**
-	 * The event data that is fired when a secret is added or removed.
-	 */
-	export interface SecretStorageChangeEvent {
-		/**
-		 * The key of the secret that has changed.
-		 */
-		key: string;
+	// TODO@API must be a class
+	export interface OpenEditorInfo {
+		name: string;
+		resource: Uri;
 	}
 
-	/**
-	 * Represents a storage utility for secrets, information that is
-	 * sensitive.
-	 */
-	export interface SecretStorage {
-		/**
-		 * Retrieve a secret that was stored with key. Returns undefined if there
-		 * is no password matching that key.
-		 * @param key The key the password was stored under.
-		 * @returns The stored value or `undefined`.
-		 */
-		get(key: string): Thenable<string | undefined>;
+	export namespace window {
+		export const openEditors: ReadonlyArray<OpenEditorInfo>;
 
-		/**
-		 * Store a secret under a given key.
-		 * @param key The key to store the password under.
-		 * @param value The password.
-		 */
-		set(key: string, value: string): Thenable<void>;
-
-		/**
-		 * Remove a secret from storage.
-		 * @param key The key the password was stored under.
-		 */
-		delete(key: string): Thenable<void>;
-
-		/**
-		 * Fires when a secret is set or deleted.
-		 */
-		onDidChange: Event<SecretStorageChangeEvent>;
-	}
-
-	export interface ExtensionContext {
-		secrets: SecretStorage;
+		// todo@API proper event type
+		export const onDidChangeOpenEditors: Event<void>;
 	}
 
 	//#endregion

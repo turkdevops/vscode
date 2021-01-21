@@ -15,10 +15,11 @@ import { TestRunState } from 'vs/workbench/api/common/extHostTypes';
 import { ITestTreeElement, ITestTreeProjection } from 'vs/workbench/contrib/testing/browser/explorerProjections';
 import { ListElementType } from 'vs/workbench/contrib/testing/browser/explorerProjections/hierarchalByName';
 import { locationsEqual, TestLocationStore } from 'vs/workbench/contrib/testing/browser/explorerProjections/locationStore';
-import { isRunningState, NodeChangeList, NodeRenderFn } from 'vs/workbench/contrib/testing/browser/explorerProjections/nodeHelper';
+import { NodeChangeList, NodeRenderFn } from 'vs/workbench/contrib/testing/browser/explorerProjections/nodeHelper';
 import { StateElement } from 'vs/workbench/contrib/testing/browser/explorerProjections/stateNodes';
-import { AbstractIncrementalTestCollection, IncrementalChangeCollector, IncrementalTestCollectionItem, InternalTestItem, TestDiffOpType, TestIdWithProvider, TestsDiff } from 'vs/workbench/contrib/testing/common/testCollection';
-import { TestSubscriptionListener } from 'vs/workbench/contrib/testing/common/testingCollectionService';
+import { AbstractIncrementalTestCollection, IncrementalChangeCollector, IncrementalTestCollectionItem, InternalTestItem, TestIdWithProvider, TestsDiff } from 'vs/workbench/contrib/testing/common/testCollection';
+import { isRunningState } from 'vs/workbench/contrib/testing/common/testingStates';
+import { TestSubscriptionListener } from 'vs/workbench/contrib/testing/common/workspaceTestCollectionService';
 
 class ListTestStateElement implements ITestTreeElement {
 	public computedState = this.test.item.state.runState;
@@ -108,14 +109,7 @@ export class StateByNameProjection extends AbstractIncrementalTestCollection<ISt
 
 		const firstDiff: TestsDiff = [];
 		for (const [, collection] of listener.workspaceFolderCollections) {
-			const queue = [collection.rootNodes];
-			while (queue.length) {
-				for (const id of queue.pop()!) {
-					const node = collection.getNodeById(id)!;
-					firstDiff.push([TestDiffOpType.Add, node]);
-					queue.push(node.children);
-				}
-			}
+			firstDiff.push(...collection.getReviverDiff());
 		}
 
 		this.apply(firstDiff);

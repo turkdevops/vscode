@@ -9,7 +9,7 @@ import { IDisposable } from 'vs/base/common/lifecycle';
 import { generateUuid } from 'vs/base/common/uuid';
 import { TestItem } from 'vs/workbench/api/common/extHostTypeConverters';
 import { RequiredTestItem, TestItem as ApiTestItem } from 'vs/workbench/api/common/extHostTypes';
-import { InternalTestItem, TestDiffOpType, TestsDiff } from 'vs/workbench/contrib/testing/common/testCollection';
+import { InternalTestItem, TestDiffOpType, TestsDiff, TestsDiffOp } from 'vs/workbench/contrib/testing/common/testCollection';
 
 /**
  * @private
@@ -103,6 +103,14 @@ export class SingleUseTestCollection implements IDisposable {
 		return diff;
 	}
 
+	/**
+	 * Pushes a new diff entry onto the collected diff list.
+	 */
+	public pushDiff(diff: TestsDiffOp) {
+		this.diff.push(diff);
+		this.debounceSendDiff.schedule();
+	}
+
 	public dispose() {
 		for (const item of this.testItemToInternal.values()) {
 			this.testIdToInternal.delete(item.id);
@@ -180,6 +188,10 @@ export class SingleUseTestCollection implements IDisposable {
 
 	@throttle(200)
 	protected throttleSendDiff() {
+		this.flushDiff();
+	}
+
+	public flushDiff() {
 		const diff = this.collectDiff();
 		if (diff.length) {
 			this.publishDiff(diff);
