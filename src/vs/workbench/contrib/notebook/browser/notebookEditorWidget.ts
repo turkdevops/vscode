@@ -1929,7 +1929,7 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditor 
 
 		const cellTop = this._list.getAbsoluteTopOfElement(cell);
 		if (this._webview.markdownPreviewMapping.has(cell.id)) {
-			await this._webview!.showMarkdownPreview(cell.id, cellTop);
+			await this._webview!.showMarkdownPreview(cell.id, cell.getText(), cellTop);
 		} else {
 			await this._webview!.createMarkdownPreview(cell.id, cell.getText(), cellTop);
 		}
