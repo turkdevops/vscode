@@ -56,6 +56,10 @@ parameters:
     displayName: "🎯 macOS arm64"
     type: boolean
     default: true
+  - name: VSCODE_BUILD_MACOS_UNIVERSAL
+    displayName: "🎯 macOS universal"
+    type: boolean
+    default: true
   - name: VSCODE_BUILD_WEB
     displayName: "🎯 Web"
     type: boolean
@@ -94,6 +98,8 @@ variables:
     value: ${{ eq(variables['Build.Reason'], 'Schedule') }}
   - name: VSCODE_STEP_ON_IT
     value: ${{ eq(parameters.VSCODE_STEP_ON_IT, true) }}
+  - name: VSCODE_BUILD_MACOS_UNIVERSAL
+    value: ${{ and(eq(variables['VSCODE_PUBLISH'], true), eq(parameters.VSCODE_BUILD_MACOS, true), eq(parameters.VSCODE_BUILD_MACOS_ARM64, true), eq(parameters.VSCODE_BUILD_MACOS_UNIVERSAL, true)) }}
 
 resources:
   containers:
@@ -250,6 +256,17 @@ stages:
             timeoutInMinutes: 90
             variables:
               VSCODE_ARCH: arm64
+            steps:
+              - template: darwin/product-build-darwin.yml
+
+        - ${{ if eq(variables['VSCODE_BUILD_MACOS_UNIVERSAL'], true) }}:
+          - job: macOSUniversal
+            dependsOn:
+              - macOS
+              - macOSARM64
+            timeoutInMinutes: 90
+            variables:
+              VSCODE_ARCH: universal
             steps:
               - template: darwin/product-build-darwin.yml
 
