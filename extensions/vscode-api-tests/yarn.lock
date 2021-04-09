@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.43.tgz#03c54589c43ad048cbcbfd63999b55d0424eec27"
   integrity sha512-xNlAmH+lRJdUMXClMTI9Y0pRqIojdxfm7DHsIxoB2iTzu3fnPmSMEN8SsSx0cdwV36d02PWCWaDUoZPDSln+xw==
 
-"@types/node@^12.11.7":
-  version "12.11.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.11.7.tgz#57682a9771a3f7b09c2497f28129a0462966524a"
-  integrity sha512-JNbGaHFCLwgHn/iCckiGSOZ1XYHsKFwREtzPwSGCVld1SGhOlmZw2D4ZI94HQCrBHbADzW9m4LER/8olJTRGHA==
+"@types/node@^12.20.6":
+  version "12.20.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.7.tgz#1cb61fd0c85cb87e728c43107b5fd82b69bc9ef8"
+  integrity sha512-gWL8VUkg8VRaCAUgG9WmhefMqHmMblxe2rVpMF86nZY/+ZysU+BkAp+3cz03AixWDSSz0ks5WX59yAhv/cDwFA==
 
 ajv@^5.1.0:
   version "5.3.0"
