@@ -32,7 +32,7 @@
 	},
 	"devDependencies": {
 		"@types/keytar": "^4.0.1",
-		"@types/node": "^10.12.21",
+		"@types/node": "^10.17.55",
 		"@types/node-fetch": "^2.5.7",
 		"@types/randombytes": "^2.0.0",
 		"@types/sha.js": "^2.4.0",
