@@ -71,14 +71,14 @@ ms@2.0.0:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
   integrity sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
 
-request-light@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/request-light/-/request-light-0.3.0.tgz#04daa783e7f0a70392328dda4b546f3e27845f2d"
-  integrity sha512-xlVlZVT0ZvCT+c3zm3SjeFCzchoQxsUUmx5fkal0I6RIDJK+lmb1UYyKJ7WM4dTfnzHP4ElWwAf8Dli8c0/tVA==
+request-light@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/request-light/-/request-light-0.4.0.tgz#c6b91ef00b18cb0de75d2127e55b3a2c9f7f90f9"
+  integrity sha512-fimzjIVw506FBZLspTAXHdpvgvQebyjpNyLRd0e6drPPRq7gcrROeGWRyF81wLqFg5ijPgnOQbmfck5wdTqpSA==
   dependencies:
     http-proxy-agent "^2.1.0"
     https-proxy-agent "^2.2.4"
-    vscode-nls "^4.1.1"
+    vscode-nls "^4.1.2"
 
 vscode-json-languageservice@^3.8.0:
   version "3.8.0"
@@ -125,11 +125,6 @@ vscode-languageserver@7.0.0-next.3:
   integrity sha512-qSt8eb546iFuoFIN+9MPl4Avru6Iz2/JP0UmS/3djf40ICa31Np/yJ7anX2j0Az5rCzb0fak8oeKwDioGeVOYg==
   dependencies:
     vscode-languageserver-protocol "3.16.0-next.4"
-
-vscode-nls@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/vscode-nls/-/vscode-nls-4.1.1.tgz#f9916b64e4947b20322defb1e676a495861f133c"
-  integrity sha512-4R+2UoUUU/LdnMnFjePxfLqNhBS8lrAFyX7pjb2ud/lqDkrUavFUTcG7wR0HBZFakae0Q6KLBFjMS6W93F403A==
 
 vscode-nls@^4.1.2:
   version "4.1.2"
