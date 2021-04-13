@@ -169,7 +169,7 @@
     "underscore": "^1.8.2",
     "vinyl": "^2.0.0",
     "vinyl-fs": "^3.0.0",
-    "vsce": "1.48.0",
+    "vsce": "1.87.0",
     "vscode-debugprotocol": "1.41.0",
     "vscode-nls-dev": "^3.3.1",
     "webpack": "^4.43.0",
