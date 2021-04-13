@@ -161,7 +161,7 @@
     "rcedit": "^1.1.0",
     "rimraf": "^2.2.8",
     "sinon": "^1.17.2",
-    "source-map": "^0.4.4",
+    "source-map": "^0.7.3",
     "style-loader": "^1.0.0",
     "ts-loader": "^4.4.2",
     "typescript": "^4.0.1-rc",
