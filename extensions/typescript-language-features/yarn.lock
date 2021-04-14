@@ -1146,10 +1146,10 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
 
-typescript-vscode-sh-plugin@^0.6.14:
-  version "0.6.14"
-  resolved "https://registry.yarnpkg.com/typescript-vscode-sh-plugin/-/typescript-vscode-sh-plugin-0.6.14.tgz#a81031b502f6346a26ea49ce082438c3e353bb38"
-  integrity sha512-AkNlRBbI6K7gk29O92qthNSvc6jjmNQ6isVXoYxkFwPa8D04tIv2SOPd+sd+mNpso4tNdL2gy7nVtrd5yFqvlA==
+typescript-vscode-sh-plugin@^0.7.1:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/typescript-vscode-sh-plugin/-/typescript-vscode-sh-plugin-0.7.3.tgz#acdc223e5baf2cd43b8e9cf21775fba162b05029"
+  integrity sha512-IAjOX1fE35G6DiNCJv6oq7JmYkPV7KI/g1SGX6i8Cgauv7hsXbS94fboSZNM2Dai+m3xNGARHG5V6Ka7YcZRgQ==
 
 "typescript-web-server@git://github.com/mjbvz/ts-server-web-build":
   version "0.0.0"
